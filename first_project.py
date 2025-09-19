@@ -1,5 +1,5 @@
 biggest_grade = 0
-smallest_grade = 0
+smallest_grade = 21
 average_grade = 0
 number_of_students = 1
 good_students = ['ali','reza']
