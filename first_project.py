@@ -38,3 +38,7 @@ while number_of_students < 10:
         print('your grade: ', students_grades)
         print("Awful, You didn't pass")
     number_of_students += 1
+average_grade = average_grade // 1
+print("The average grade is " , average_grade) # grades results
+print("The smallest grade is " , smallest_grade)
+print("The biggest grade is " , biggest_grade)
