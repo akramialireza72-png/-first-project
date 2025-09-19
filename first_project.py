@@ -12,8 +12,10 @@ while number_of_students < 10:
         continue
     if names_of_students in good_students: #For disorganized and organized students
         students_grades += 2
+        print('since you were a bit organized student, 2 points will be added to your grade')
     elif names_of_students in bad_students:
         students_grades -= 2
+        print('Since you were a disorganized student, 2 points will be deducted from your grade')
     if students_grades >= 18 and students_grades <= 20: #To check the students' grades
         print('your name: ' , names_of_students)
         print('your grade: ' , students_grades)
