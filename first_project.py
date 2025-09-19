@@ -1,15 +1,20 @@
-biggest_score= 0
-smallest_score = 0
-average_score = 0
-number_of_students= 1
-good_students= ['ali','reza']
-bad_students= ['peyman','eli']
+biggest_grade = 0
+smallest_grade = 0
+average_grade = 0
+number_of_students = 1
+good_students = ['ali','reza']
+bad_students = ['peyman','eli']
 while number_of_students < 10:
     names_of_students=(input("Enter your name: ")).lower()
     students_grades=float(input("Enter your grade: "))
-    if students_grades < 0 or students_grades > 20: #to get the correct score
+    if students_grades < 0 or students_grades > 20: #to get the correct grade
         print("Please enter a number between 0 and 20")
         continue
+    average_grade = students_grades #For the average grades
+    if students_grades > biggest_grade: #For the biggest grade and smallest grade
+        biggest_grade = students_grades
+    if students_grades < smallest_grade:
+        smallest_grade = students_grades
     if names_of_students in good_students: #For disorganized and organized students
         students_grades += 2
         print('since you were a bit organized student, 2 points will be added to your grade')
@@ -32,3 +37,4 @@ while number_of_students < 10:
         print('your name: ', names_of_students)
         print('your grade: ', students_grades)
         print("Awful, You didn't pass")
+    number_of_students += 1
