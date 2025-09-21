@@ -8,7 +8,7 @@ good_students = ['ali','reza']
 bad_students = ['peyman','eli']
 while number_of_students < 10:
     names_of_students=(input("Enter your name: ")).lower()
-    if names_of_students == blocked_people:
+    if names_of_students in blocked_people:
         print("your account is blocked you can't continue.")
         continue
     students_grades=float(input("Enter your grade: "))
