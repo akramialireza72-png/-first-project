@@ -1,102 +1,73 @@
-biggest_grade = 0
-blocked_people = []
-invalid_input = 1
-smallest_grade = 21
-average_grade = 0
-number_of_students = 0
-good_students = ['ali','reza']
-bad_students = ['peyman','eli']
-while number_of_students < 10:
-    names_of_students=(input("Enter your name: ")).lower()
-    if names_of_students in blocked_people:
-        print("your account is blocked you can't continue.")
-        continue
-    students_grades=float(input("Enter your grade: "))
-    if students_grades < 0 or students_grades > 20: #to get the correct grade
-        if invalid_input > 2: #So that if someone makes more than three mistakes, their account will be blocke
-            print("your account is blocked")
-            blocked_people = names_of_students
+#To convert dollars to euros
+def ConvertDollarsToEuros(customer_money_for_exchange, exchange_rate):
+    return customer_money_for_exchange / exchange_rate
+#Customer's remaining dollar balance after conversion to euros
+def RemainingDollarAmountOfTheCustomer(customer_dollar, customer_money_for_exchange):
+    return customer_dollar - customer_money_for_exchange
+def calculating(result_of_exchange, Banknotes_chosen_by_the_customer, count_bill, remaining_euro):
+    # Calculations for issuing a receipt to the customer
+    while True:
+        banknote = int(input("What kind of banknote do you want? between 5 , 10 ,and 20: "))
+        #If the customer requests $5 banknotes
+        if banknote == 5:
+            remaining_euro= result_of_exchange % 5
+            count_bill= result_of_exchange // 5
+            print("you take(" , int(count_bill) , ") 5 euro bills")
+            print("remaining of money is ", remaining_euro)
+            result_of_exchange= (result_of_exchange // 5) * 5
+            print("you'll take " , int(result_of_exchange) , " euros")
+            Banknotes_chosen_by_the_customer= 5
+            return Banknotes_chosen_by_the_customer , count_bill , result_of_exchange , remaining_euro
+        # If the customer requests $10 banknotes
+        elif banknote == 10:
+            remaining_euro = result_of_exchange % 10
+            count_bill = result_of_exchange // 10
+            print("you take(" , int(count_bill) , ") 10 euro bills")
+            print("remaining of money is ", remaining_euro)
+            result_of_exchange = (result_of_exchange // 10) * 10
+            print("you'll take ", int(result_of_exchange), " euros")
+            Banknotes_chosen_by_the_customer = 10
+            return Banknotes_chosen_by_the_customer , count_bill , result_of_exchange , remaining_euro
+        # If the customer requests $20 banknotes
+        elif banknote == 20:
+            remaining_euro = result_of_exchange % 20
+            count_bill = result_of_exchange // 20
+            print("you take(" , int(count_bill) , ") 20 euro bills")
+            print("remaining of money is ", remaining_euro)
+            result_of_exchange = (result_of_exchange // 20) * 20
+            print("you'll take ", int(result_of_exchange), " euros")
+            Banknotes_chosen_by_the_customer = 20
+            return Banknotes_chosen_by_the_customer , count_bill , result_of_exchange , remaining_euro
+        else:
+            print("please enter a valid number")
             continue
-        print("Please enter a number between 0 and 20")
-        invalid_input += 1
-        continue
-    if names_of_students in good_students: #For disorganized and organized students
-        students_grades += 2
-        print('since you were a bit organized student, 2 points will be added to your grade')
-        if students_grades > 20: #because if the grade is above 18, it will show a score bigger than 20.
-            students_grades = 20
-            print('your name: ', names_of_students)
-            print('your grade: ' , students_grades)
-            print('Great, you are accepted')
-        elif students_grades > 17 and students_grades < 21:
-            print('your name: ', names_of_students)
-            print('your grade: ', students_grades)
-            print('Great, you are accepted')
-        elif students_grades >= 15 and students_grades <= 18:
-            print('your name: ', names_of_students)
-            print('your grade: ', students_grades)
-            print('well down! you passed the exam')
-        elif students_grades >= 12 and students_grades < 15:
-            print('your name: ', names_of_students)
-            print('your grade: ', students_grades)
-            print('you have passed, but try harder')
+#Customer inputs
+customer_dollar=float(input("How much dollar do you have? "))
+customer_money_for_exchange=float(input("How many dollars do you want to exchange? "))
+exchange_rate=float(input("What is the exchange rate?! "))
+if customer_dollar > 9: #To validate correct inputs
+    if customer_money_for_exchange <= customer_dollar:
+        if exchange_rate >= 1 and exchange_rate <= 2:
+            Money_in_euros = ConvertDollarsToEuros(customer_money_for_exchange , exchange_rate)
+            remaining_dollar = RemainingDollarAmountOfTheCustomer(customer_dollar , customer_money_for_exchange)
+            print("your money in euro is", Money_in_euros, "euros")
+            print("your remaining money in dollar is", remaining_dollar)
+            remaining_euro= 0
+            count_bill= 0
+            Banknotes_chosen_by_the_customer= 0
+            Banknotes_chosen_by_the_customer , count_bill , Money_in_euros , remaining_euro = calculating(
+                Money_in_euros , Banknotes_chosen_by_the_customer , count_bill , remaining_euro
+            )
+            #Customer receipt
+            print("your receipt\n\nYou converted $", customer_money_for_exchange, "at an exchange rate of ", exchange_rate)
+            print("You got the equivalent of", int(Money_in_euros), "euros.")
+            print("You chose", Banknotes_chosen_by_the_customer, "euro banknotes.")
+            print("You received ", int(count_bill)," banknotes (", int(Money_in_euros), " euros)")
+            print("The remaining euros for us :", remaining_euro)
+            print("Your remaining dollar balance :", remaining_dollar)
         else:
-            print('your name: ', names_of_students)
-            print('your grade: ', students_grades)
-            print("Awful, You didn't pass")
-    elif names_of_students in bad_students:
-        students_grades -= 2
-        print('Since you were a disorganized student, 2 points will be deducted from your grade')
-        if students_grades < 0: #because if the grade is below 2, it will show a score as negative zero.
-            students_grades = 0
-            print('your name: ', names_of_students)
-            print('your grade: 0')
-            print("Awful, You didn't pass")
-        elif students_grades >= 0 and students_grades < 3:
-            print('your name: ', names_of_students)
-            print('your grade: ', students_grades)
-            print("Awful, You didn't pass")
-        elif students_grades == 18:
-            print('your name: ', names_of_students)
-            print('your grade: ', students_grades)
-            print('Great, you are accepted')
-        elif students_grades >=15 and students_grades < 18:
-            print('your name: ', names_of_students)
-            print('your grade: ', students_grades)
-            print('well down! you passed the exam')
-        elif students_grades >=12 and students_grades < 15:
-            print('your name: ', names_of_students)
-            print('your grade: ', students_grades)
-            print('you have passeelid, but try harder')
-        else:
-            print('your name: ', names_of_students)
-            print('your grade: ', students_grades)
-            print("Awful, You didn't pass")
-    elif students_grades >= 18 and students_grades <= 20: #To check the students' grades
-        print('your name: ' , names_of_students)
-        print('your grade: ' , students_grades)
-        print('Great, you are accepted')
-    elif students_grades >= 15 and students_grades < 18:
-        print('your name: ', names_of_students)
-        print('your grade: ', students_grades)
-        print('well down! you passed the exam')
-    elif students_grades >= 12 and students_grades < 15:
-        print('your name: ', names_of_students)
-        print('your grade: ', students_grades)
-        print('you have passed, but try harder')
+            print("The exchange rate must be between 1 and 2")
     else:
-        print('your name: ', names_of_students)
-        print('your grade: ', students_grades)
-        print("Awful, You didn't pass")
-    average_grade += students_grades  # For the average grades
-    if students_grades > biggest_grade:  # For the biggest grade and smallest grade
-        biggest_grade = students_grades
-    if students_grades < smallest_grade:
-        smallest_grade = students_grades
-    number_of_students += 1
-    #print(average_grade , )
-    #print(number_of_students)
-average_grade = (average_grade / number_of_students) // 1
-print("\nThe average grade is " , average_grade) # grades results
-print("The smallest grade is " , smallest_grade)
-print("The biggest grade is " , biggest_grade)
+        print("Insufficient funds for this request")
+else:
+    print("You must have at least 10 dollars")
